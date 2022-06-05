@@ -1,0 +1,274 @@
+create table if not exists branch (
+    branch_id int auto_increment primary key,
+    branch_name text not null
+) collate utf8mb4_general_ci;
+
+create table if not exists faculty (
+    faculty_id int auto_increment primary key,
+    faculty_name text not null
+) collate utf8mb4_general_ci;
+
+create table if not exists institute (
+    institute_id int auto_increment primary key,
+    institute_name text not null
+) collate utf8mb4_general_ci;
+
+create table if not exists university (
+    university_id int auto_increment primary key,
+    university_name text not null,
+    university_logo text,
+    university_tel text,
+    university_email text,
+    university_url text,
+    university_map text,
+    university_city text,
+    university_type text,
+    university_world_order int,
+    university_local_order int,
+    university_education_language text,
+    university_category int,
+    university_description longtext
+) collate utf8mb4_general_ci;
+
+create table if not exists university_faculty (
+    university_faculty_id int auto_increment primary key,
+    university_id int not null,
+    faculty_id int not null,
+    faculty_url text,
+    constraint fk_uf_university_id foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_uf_faculty_id foreign key (faculty_id) references faculty (faculty_id) ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists university_institute (
+    university_institute_id int auto_increment primary key,
+    university_id int not null,
+    institute_id int not null,
+    institute_url text,
+    constraint fk_ui_university_id foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_ui_institute_id foreign key (institute_id) references institute (institute_id) ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists university_faculty_branch (
+    id int auto_increment primary key,
+    university_faculty_id int not null,
+    branch_id int not null,
+    branch_url text,
+    constraint fk_ufb_university_faculty_id  foreign key (university_faculty_id) references university_faculty (university_faculty_id) ON DELETE CASCADE,
+    constraint fk_ufb_branch_id foreign key (branch_id) references branch (branch_id)  ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists university_institute_branch (
+    id int auto_increment primary key,
+    university_institute_id int not null,
+    branch_id int not null,
+    branch_url text,
+    constraint fk_uib_university_institute_id  foreign key (university_institute_id) references university_institute (university_institute_id) ON DELETE CASCADE,
+    constraint fk_uib_branch_id foreign key (branch_id) references branch (branch_id)  ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists university_branch (
+    id int auto_increment primary key,
+    university_id int not null,
+    branch_id int not null,
+    constraint fk_ub_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_ub_branch_id foreign key (branch_id) references branch (branch_id)  ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists section (
+    section_id int auto_increment primary key,
+    section_name text not null
+) collate utf8mb4_general_ci;
+
+create table if not exists university_section (
+    id int auto_increment primary key,
+    university_id int not null,
+    section_id int not null,
+    option_name text not null,
+    option_value longtext,
+    constraint fk_us_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_us_section_id foreign key (section_id) references section (section_id)  ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists exam (
+    exam_id int auto_increment primary key,
+    exam_name text not null
+) collate utf8mb4_general_ci;
+
+
+create table if not exists university_exam (
+    id int auto_increment primary key,
+    university_id int not null,
+    exam_id int not null,
+    constraint fk_ue_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_ue_exam_id foreign key (exam_id) references exam (exam_id)  ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+
+create table if not exists city (
+    city_id int auto_increment primary key,
+    city_name text not null
+) collate utf8mb4_general_ci;
+
+create table if not exists app_calendar (
+    id int auto_increment primary key,
+    university_id int not null,
+    app_name text,
+    app_start_date date,
+    app_end_date date,
+    app_result_date date,
+    app_result_url text,
+    constraint fk_ac_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists yos_calendar (
+    id int auto_increment primary key,
+    university_id int not null,
+    yos_start_date date,
+    yos_end_date date,
+    yos_result_date date,
+    yos_result_url text,
+    constraint fk_yc_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+
+create table if not exists slider (
+    id int auto_increment primary key,
+    slider_image text not null,
+    slider_title text not null,
+    slider_description text not null,
+    slider_order int
+) collate utf8mb4_general_ci;
+
+create table if not exists team (
+    id int auto_increment primary key,
+    team_image text not null,
+    team_name text not null,
+    team_position text not null,
+    team_description text not null,
+    team_order int
+) collate utf8mb4_general_ci;
+
+create table if not exists degree (
+    degree_id int auto_increment primary key,
+    degree_name text not null,
+    degree_order int,
+    degree_slug text
+) collate utf8mb4_general_ci;
+
+create table if not exists university_degree (
+    id int auto_increment primary key,
+    university_id int not null,
+    degree_id int not null,
+    branch_name text,
+    branch_study_years text,
+    branch_language text,
+    branch_before_discount text,
+    branch_after_discount text,
+    constraint fk_ud_university_id  foreign key (university_id) references university (university_id) ON DELETE CASCADE,
+    constraint fk_ud_degree_id  foreign key (degree_id) references degree (degree_id) ON DELETE CASCADE
+) collate utf8mb4_general_ci;
+--------------------------------------------
+ALTER TABLE university
+ADD COLUMN university_description longtext DEFAULT 'test';
+
+ALTER TABLE branch
+ADD COLUMN branch_description longtext DEFAULT 'test';
+
+ALTER TABLE exam
+ADD COLUMN exam_description longtext DEFAULT 'test';
+
+ALTER TABLE exam
+ADD COLUMN exam_order int default 0;
+
+ALTER TABLE exam
+ADD COLUMN exam_slug text default 'test';
+
+ALTER TABLE section
+ADD COLUMN section_order int default 0;
+
+ALTER TABLE university_section
+ADD COLUMN option_order int default 0;
+
+
+INSERT INTO city VALUES
+    (1,'أضنة (Adana)'),
+    (2,'أديامان (Adıyaman)'),
+    (3,'أفيون (Afyon)'),
+    (4,'أغري (Ağrı)'),
+    (5,'أماسيا (Amasya)'),
+    (6,'أنقرة (Ankara)'),
+    (7,'أنطاليا (Antalya)'),
+    (8,'أرتوين (Artvin)'),
+    (9,'أيطن (Aydın)'),
+    (10,'بالق أسير (Balıkesir)'),
+    (11,'بيله جك (Bilecik)'),
+    (12,'بينكُل (Bingöl)'),
+    (13,'بيطليس (Bitlis)'),
+    (14,'بولو (Bolu)'),
+    (15,'بوردور (Burdur)'),
+    (16,'بورصة (Bursa)'),
+    (17,'جاناكالي (Çanakkale)'),
+    (18,'جانقري (Çankırı)'),
+    (19,'جوروم (Çorum)'),
+    (20,'دنيزلي (Denizli)'),
+    (21,'ديار بكر (Diyarbakır)'),
+    (22,'أدرنة (Edirne)'),
+    (23,'إلازِغ (Elazığ)'),
+    (24,'أرزينجان (Erzincan)'),
+    (25,'أرضروم (Erzurum)'),
+    (26,'أسكي شهر (Eskişehir)'),
+    (27,'غازي عينتاب (Gaziantep)'),
+    (28,'غيرسون (Giresun)'),
+    (29,'كوموش خانة (Gümüşhane)'),
+    (30,'حقاري (Hakkari)'),
+    (31,'خطاي (Hattay))'),
+    (32,'إسبرطة (Isparta)'),
+    (33,'مرسين (Mersin)'),
+    (34,'إسطنبول (İstanbul)'),
+    (35,'إزمير (İzmir)'),
+    (36,'كارس (Kars)'),
+    (37,'قسطموني (Kastamonu)'),
+    (38,'قيصرية (Kayseri)'),
+    (39,'كيركلاريلي (Kırklareli)'),
+    (40,'قرشهر (Kırşehir)'),
+    (41,'قوجه ايلي (Kocaeli))'),
+    (42,'قونية (Konya)'),
+    (43,'كوتاهيا (Kütahya)'),
+    (44,'ملاطية (Malatya)'),
+    (45,'مانيسا (Manisa)'),
+    (46,'كارامان (Kahramanmaraş)'),
+    (47,'ماردين (Mardin)'),
+    (48,'موغلا (Muğla)'),
+    (49,'موس (Muş)'),
+    (50,'نوشهر (Nevşehir)'),
+    (51,'نيدا (Niğde)'),
+    (52,'أردو (Ordu)'),
+    (53,'ريزه (Rize)'),
+    (54,'صقاريا (Sakarya)'),
+    (55,'سامسون (Samsun)'),
+    (56,'سيرت (Siirt)'),
+    (57,'سينوب (Sinop)'),
+    (58,'سيواس (Sivas)'),
+    (59,'تكيرطاغ (Tekirdağ)'),
+    (60,'توكات (Tokat)'),
+    (61,'طرابزون (Trabzon)'),
+    (62,'تونجلي (Tunceli)'),
+    (63,'شانلي أورفا (Şanlıurfa)'),
+    (64,'أوشاك (Uşak)'),
+    (65,'وان (Van)'),
+    (66,'يوزكات (Yozgat)'),
+    (67,'زونغولداك (Zonguldak)'),
+    (68,'أق سراي (Aksaray)'),
+    (69,'بايبورت (Bayburt)'),
+    (70,'قرة مان (Karaman)'),
+    (71,'كيرِك قلعة (Kırıkkale)'),
+    (72,'باتمان (Batman)'),
+    (73,'شرناق (Şırnak)'),
+    (74,'بارتين (Bartın)'),
+    (75,'أرض خان (Ardahan)'),
+    (76,'إغدير (Iğdır)'),
+    (77,'يالوفا (Yalova)'),
+    (78,'قرة بوك (Karabük)'),
+    (79,'كيليس (Kilis)'),
+    (80,'عثمانية (Osmaniye)'),
+    (81,'دوزجه (Düzce)');
+

@@ -1,0 +1,52 @@
+.wps-icon-login ,.wps-icon-pwd {
+    left:50px;
+}
+#loginform {
+    text-align:right!important;
+}
+#adminmenu div.wp-menu-name {
+  text-align: right;
+}
+
+#adminmenu .wp-submenu li a {
+  text-align: right;
+}
+
+.myCenter {
+  text-align: center;
+}
+
+div.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  display: none;
+  z-index: 5000;
+}
+
+.bs-modal-open {
+  overflow: hidden;
+}
+
+.bs-modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+div.add_university_wrapper {
+  text-align: right;
+  font-size: 12px;
+}
+
+div.add_university_wrapper input , div.add_university_wrapper select {
+  width: 100%!important;
+  max-width: 100%!important;
+}
+
+div.university_logo_wrapper img {
+  width: auto;
+  max-width: 100%;
+  height:100px;
+}
+
