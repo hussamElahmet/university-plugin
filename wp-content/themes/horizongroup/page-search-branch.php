@@ -22,7 +22,7 @@ $areas = $wpdb->get_results('SELECT DISTINCT * FROM AREA_OF_STUDY');
 </div>
 
 
-<div class="container pt-100 pb-130" dir="ltr">
+<div class="container pt-100 pb-90" dir="ltr">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<!-- <select id="branch">

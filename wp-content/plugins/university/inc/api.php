@@ -211,7 +211,37 @@ function api_get_university_related($payload)
 // }
 	//Query builder
 	// echo "lang=$university";
-	$query="select * from university where ";
+	$query="select university.university_logo as logo,university.university_name as university,degree.degree_name as program,university_degree.branch_name as degree_name,
+	university_degree.branch_before_discount as price_befor_discount,
+	university_degree.branch_after_discount as price_after_discount,
+	(
+	 select area_name from area_of_study inner join branch on branch.area_id=area_of_study.area_id where  branch.branch_name=TRIM(university_degree.branch_name)
+	) area_of_study
+	,
+	university.university_education_language as program_language ,
+	(select degree_name from degree where degree.degree_id=university_degree.degree_id) as program_level,
+	university.university_city as location,
+	university_degree.Status,
+	university.university_url as link from university inner join university_degree on university_degree.university_id=university.university_id
+	inner join degree on degree.degree_id=university_degree.degree_id  WHERE";
+	// if($areas !=-1)
+	// {
+	// 	$query2="select * from  branch where area_id=$areas";
+	// 	$result2 = $wpdb->get_results($query2);
+	// 	$str="(";
+	// 	foreach($result2 as $res)
+	// 	{
+	// 		$str.="'$res',";
+	// 	}
+    //     $str=rtrim($str,',');
+	// 	echo "$result2";
+	//     if($result2 != null)
+	// 	{
+	// 		$query.=" university.university_id IN 
+	// 		(SELECT DISTINCT university_id FROM university_degree where TRIM(branch_name) IN $str ) AND ";
+	// 	}
+	// }
+
 	if($lang !=-1)
 	{
 		$query.=" university.university_education_language like '%$lang%' AND ";
