@@ -100,10 +100,11 @@ $telegram = get_option('university_telegram');
                         <div class="footer-list">
                             <ul>
                                 <li><a href="<?php echo site_url();?>">الرئيسية</a></li>
-                                <li><a href="<?php echo site_url().'/university/gov';?>"> الجامعات الحكومية</a></li>
+                                <!-- <li><a href="<?php echo site_url().'/university/gov';?>"> الجامعات الحكومية</a></li> -->
                                 <li><a href="<?php echo site_url().'/university/priv';?>">الجامعات الخاصة</a></li>
-                                <li><a href="<?php echo site_url().'/calendar/app';?>">تقويم المفاضلات</a></li>
-                                <li><a href="<?php echo site_url().'/exam/yos';?>">تقويم اليوس</a></li>
+                                <li><a href="<?php echo site_url().'/search-branch/';?>">ابحث عن تخصصك</a></li>
+                                <!-- <li><a href="<?php echo site_url().'/calendar/app';?>">تقويم المفاضلات</a></li>
+                                <li><a href="<?php echo site_url().'/exam/yos';?>">تقويم اليوس</a></li> -->
                                 <li><a href="<?php echo site_url().'/blog/';?>">الأخبار</a></li>
                             </ul>
                         </div>

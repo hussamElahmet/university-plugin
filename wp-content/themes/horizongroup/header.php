@@ -46,9 +46,9 @@ $child_categories=get_categories(
                                 <ul>
                                     <li><a href="<?php echo site_url(); ?>"> الرئيسية </a></li>
                                     <li><a href="<?php echo site_url().'/university/priv/';  ?>">الجامعات الخاصة</a></li>
-                                    <li><a href="<?php echo site_url().'/university/gov/'; ?>">الجامعات الحكومية</a></li>
-                                    <li><a href="<?php echo site_url().'/calendar/app/'; ?>">تقويم المفاضلات</a></li>
-                                    <li><a href="#">الامتحانات <i class="fa fa-angle-down"></i> </a>
+                                    <!-- <li><a href="<?php echo site_url().'/university/gov/'; ?>">الجامعات الحكومية</a></li> -->
+                                    <!-- <li><a href="<?php echo site_url().'/calendar/app/'; ?>">تقويم المفاضلات</a></li> -->
+                                    <!-- <li><a href="#">الامتحانات <i class="fa fa-angle-down"></i> </a>
                                         <ul class="submenu">
                                             <li><a href="<?php echo site_url().'/exam/yos/'; ?>">
                                                 امتحان اليوس – تقويم اليوس
@@ -57,7 +57,7 @@ $child_categories=get_categories(
                                             <li><a href="<?php echo site_url().'/exam/tomer/'; ?>">التومر</a></li>
                                             
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <li><a href="<?php echo site_url().'/search-branch/'; ?>">ابحث عن تخصصك</a></li>
                                     <li><a href="<?php echo site_url().'/blog/'; ?>"> الأخبار  </a>
                                     </li>
@@ -118,7 +118,7 @@ $child_categories=get_categories(
                         <ul class="menu-overflow">
                             <li><a href="<?php echo site_url(); ?>"> الرئيسية </a></li>
                             <li><a href="<?php echo site_url().'/university/priv/'; ?>">الجامعات الخاصة</a></li>
-                            <li><a href="<?php echo site_url().'/university/gov/'; ?>">الجامعات الحكومية</a></li>
+                            <!-- <li><a href="<?php echo site_url().'/university/gov/'; ?>">الجامعات الحكومية</a></li>
                             <li><a href="<?php echo site_url().'/calendar/app/'; ?>">تقويم المفاضلات</a></li>
                             <li><a href="#">الامتحانات  </a>
                                 <ul>
@@ -129,7 +129,7 @@ $child_categories=get_categories(
                                     <li><a href="<?php echo site_url().'/exam/tomer/'; ?>">التومر</a></li>
                                     
                                 </ul>
-                            </li>
+                            </li> -->
                             <li><a href="<?php echo site_url().'/search-branch/'; ?>">ابحث عن تخصصك</a></li>
                             <li><a href="<?php echo site_url().'/blog/'; ?>"> الأخبار  </a>
                             </li>

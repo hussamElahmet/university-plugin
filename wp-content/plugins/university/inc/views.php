@@ -463,6 +463,9 @@ function priv_university_html()
 
 	$universities = $wpdb->get_results('SELECT * FROM university WHERE university_category = 1');
 	$degrees = $wpdb->get_results('SELECT * FROM degree');
+	$areas = $wpdb->get_results('SELECT DISTINCT * FROM AREA_OF_STUDY');
+	$branches=$wpdb->get_results('SELECT * FROM BRANCH');
+
 ?>
 	<div class="loader">
 		<img src="<?php echo UNIVERSITY_PLUGIN_URL . '/img/loader.gif' ?>">
@@ -490,18 +493,55 @@ function priv_university_html()
 							حفظ
 						</button>
 					</div><br><br>
-					<div class="form-field form-required term-name-wrap">
+					<!-- <div class="form-field form-required term-name-wrap">
 						<label for="branch_name">اسم التخصص</label>
 						<input name="branch_name" id="branch_name" type="text">
-					</div><br><br>
+					</div> -->
+					
+					
+				
+			
+			<br><br>
+			<div class="form-field form-required term-name-wrap ss-single-selected">
+			<label for="branc_name">اسم الفرع</label>
+ 	    <select id="branch_name" name="branch_name"  >
+							<!-- <option value="-1">اسم التخصص</option> -->
+                           
+							<?php for ($i = 0; $i < count($branches); $i++) { ?>
+								<option style="direction: ltr;" value="<?php echo $branches[$i]->branch_name?>">
+									<?php echo $branches[$i]->branch_name ?>
+								</option>
+							<?php } ?>
+						</select>
+			</div>
+			
+			<br><br>	
 					<div class="form-field form-required term-name-wrap">
 						<label for="branch_study_years">السنوات الدراسية</label>
 						<input name="branch_study_years" id="branch_study_years" type="text">
 					</div><br><br>
+					<!-- <div class="form-field form-required term-name-wrap">
+						<label for="branch_language">لغة التدريس</label>
+						<input name="branch_language" id="branch_language" type="text" placeholder="التركية و الانكليزية">
+					</div> -->
 					<div class="form-field form-required term-name-wrap">
 						<label for="branch_language">لغة التدريس</label>
-						<input name="branch_language" id="branch_language" type="text">
-					</div><br><br>
+						<select id="branch_language">
+						<option value="التركية">التركية</option>
+						<option value="الانكليزية">الانكليزية</option>
+						<option value="التركية و الانكليزية">التركية و الانكليزية</option>
+						</select>
+					</div>
+					<div class="form-field form-required term-name-wrap ss-single-selected">
+						<!-- <select id="branch_language" name="branch_language"  >
+							 <option value="التركية">التركية</option>
+							 <option value="الانكليزية">الانجليزية</option>
+						</select> -->
+			</div>
+					
+					
+					
+					<br><br>
 					<div class="form-field form-required term-name-wrap">
 						<label for="branch_before_discount">المصروفات الدراسية قبل التخفيض</label>
 						<input name="branch_before_discount" id="branch_before_discount" type="text">

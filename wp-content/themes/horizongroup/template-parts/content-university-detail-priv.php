@@ -15,7 +15,6 @@ if ($university->university_category == 0) {
 
 
 
-
 $degree_query = $wpdb->prepare(
 	"
 	SELECT d.degree_id,d.degree_name,
@@ -23,7 +22,8 @@ $degree_query = $wpdb->prepare(
 	GROUP_CONCAT(ud.branch_study_years SEPARATOR '**//bossoft//**' ) AS branch_study_years ,
 	GROUP_CONCAT(ud.branch_language SEPARATOR '**//bossoft//**' ) AS branch_language ,
 	GROUP_CONCAT(ud.branch_before_discount SEPARATOR '**//bossoft//**' ) AS branch_before_discount ,
-	GROUP_CONCAT(ud.branch_after_discount SEPARATOR '**//bossoft//**' ) AS branch_after_discount 
+	GROUP_CONCAT(ud.branch_after_discount SEPARATOR '**//bossoft//**' ) AS branch_after_discount ,
+	GROUP_CONCAT(ud.Status SEPARATOR '**//bossoft//**' ) AS branch_status 
 	FROM university_degree ud INNER JOIN degree d ON ud.degree_id = d.degree_id AND ud.university_id = %s GROUP BY ud.degree_id order by d.degree_order
 	",
 	$university_id);
@@ -154,6 +154,7 @@ $exam = $wpdb->get_row($exam_query);
 					$branch_languages = explode("**//bossoft//**", $degree[$i]->branch_language);
 					$branch_before_discounts = explode("**//bossoft//**", $degree[$i]->branch_before_discount);
 					$branch_after_discounts = explode("**//bossoft//**", $degree[$i]->branch_after_discount);
+					$status = explode("**//bossoft//**", $degree[$i]->branch_status);
 					?>
 					<div class="tab-pane fade show <?php if($i==0) echo 'active'; ?>" 
 						id="<?php echo 'desc-'.$degree[$i]->degree_id ?>" role="tabpanel" 
@@ -167,6 +168,7 @@ $exam = $wpdb->get_row($exam_query);
 										<th>لغة التدريس</th>
 										<th>المصروفات قبل التخفيض</th>
 										<th>المصروفات بعد التخفيض</th>
+										<th>الحالة</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -177,6 +179,7 @@ $exam = $wpdb->get_row($exam_query);
 										<td><?php echo $branch_languages[$j] ?></td>
 										<td><?php echo $branch_before_discounts[$j] ?></td>
 										<td><?php echo $branch_after_discounts[$j] ?></td>
+										<td><?php echo $status[$j]==0?'غير متاح':'متاح' ?></td>
 									</tr>
 						<?php } ?>
 								</tbody>

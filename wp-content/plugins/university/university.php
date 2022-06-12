@@ -94,14 +94,14 @@ function university_options_page() {
         'branch_html'
     );
 
-    add_submenu_page (
-        'university',
-        'الامتحانات',
-        'الامتحانات',
-        'manage_options',
-        'exam',
-        'exam_html'
-    );
+    // add_submenu_page (
+    //     'university',
+    //     'الامتحانات',
+    //     'الامتحانات',
+    //     'manage_options',
+    //     'exam',
+    //     'exam_html'
+    // );
 
     add_submenu_page (
         'university',
@@ -112,13 +112,13 @@ function university_options_page() {
         'section_html'
     );
 
-    add_submenu_page (
-        'relation_all',
-        'ربط الجامعات الحكومية',
-        'ربط الجامعات الحكومية',
-        'manage_options',
-        'relation_all'
-    );
+    // add_submenu_page (
+    //     'relation_all',
+    //     'ربط الجامعات الحكومية',
+    //     'ربط الجامعات الحكومية',
+    //     'manage_options',
+    //     'relation_all'
+    // );
 
     // add_submenu_page (
     //     'relation_all',
