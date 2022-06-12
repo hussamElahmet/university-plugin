@@ -4,7 +4,110 @@ $slider = $wpdb->get_results('SELECT * FROM slider ORDER BY slider_order');
 $team = $wpdb->get_results('SELECT * FROM team ORDER BY team_order');
 
 ?>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900|Material+Icons'>
+<style>
+
+
+@media screen and (max-width: 800px) {
+    .containerhussam {
+        margin-left:-1rem;
+    margin-top: 4rem;
+    text-align: -webkit-center;
+}
+}
+@media screen and (min-width: 900px) {
+    .containerhussam {
+        margin-left: 40rem;
+    margin-top: 4rem;
+}
+}
+
+
+
+.btn {
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #5380F7;
+  min-width: 260px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 16px 20px;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn:focus .dropdown, .btn:active .dropdown {
+  -webkit-transform: translate(0, 20px);
+          transform: translate(0, 20px);
+  opacity: 1;
+  visibility: visible;
+}
+.btn .material-icons {
+  border-radius: 100%;
+  -webkit-animation: ripple 0.6s linear infinite;
+          animation: ripple 0.6s linear infinite;
+}
+.btn .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #FFFFFF;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+.btn .dropdown:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  box-shadow: 2px -2px 6px rgba(0, 0, 0, 0.05);
+  border-top: 6px solid #FFFFFF;
+  border-right: 6px solid #FFFFFF;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  mix-blend-mode: multiple;
+}
+.btn .dropdown li {
+  z-index: 1;
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 20px;
+  color: #666;
+}
+.btn .dropdown li.active {
+  color: #5380F7;
+}
+.btn .dropdown li:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.btn .dropdown li:last-child {
+  border-radius: 0 0 4px 4px;
+}
+.btn .dropdown li:last-child a {
+  border-bottom: 0;
+}
+</style>
+</head>
 <div class="slider-area">
     <div class="slider-active owl-carousel">
     <?php for ($i=0; $i < count($slider); $i++) {  ?>
@@ -79,6 +182,12 @@ $team = $wpdb->get_results('SELECT * FROM team ORDER BY team_order');
         </div>
     </div>
 </div>
+  <!-- Btn-->
+  <div class="containerhussam"> 
+  <button class="btn" onclick="location.href='<?php echo site_url().'/search-branch/'; ?>'" ><span>ابحث عن تخصصك</span><i class="material-icons">public</i>
+
+  </button>
+    </div>
 <div class="blog-area pt-130 pb-100">
     <div class="container" dir="rtl" style="text-align: center;">
         <div class="section-title mb-75">

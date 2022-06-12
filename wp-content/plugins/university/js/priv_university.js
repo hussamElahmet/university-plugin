@@ -15,6 +15,29 @@ $(document).ready(function() {
 		}
 	});
 
+
+	// areas_select = new SlimSelect({
+	// 	select: '#areas_name',
+	// 	onChange:(info) => {
+	// 	    selected_areas = info.value;
+	// 	    checkSelects();
+
+	// 	}
+	// });
+
+
+
+	branch_select = new SlimSelect({
+		select: '#branch_name',
+		onChange:(info) => {
+		    selected_branch = info.value;
+		    checkSelects();
+
+		}
+	});
+
+	
+
 	degrees_select = new SlimSelect({
 		select: '#degrees',
 		onChange:(info) => {
